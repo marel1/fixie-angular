@@ -1,0 +1,8 @@
+.default {
+  border-color: #e7e7e7;
+  color: darkgray;
+}
+
+.default:hover {
+  color: whitesmoke;
+}
