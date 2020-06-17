@@ -4,10 +4,12 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { MainComponent } from './main/main.component';
-import {Router, RouterModule, Routes} from "@angular/router";
 import { SigninComponent } from './signin/signin.component';
 import { ErrorComponent } from './error/error.component';
 import { SignupComponent } from './signup/signup.component';
+import {Router, RouterModule, Routes} from "@angular/router";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
 
 const appRoutes:Routes=[
   {
@@ -39,7 +41,10 @@ const appRoutes:Routes=[
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes,{enableTracing:true})
+    HttpClientModule,
+    FormsModule,
+    RouterModule.forRoot(appRoutes, {enableTracing: true}),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
