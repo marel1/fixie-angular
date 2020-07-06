@@ -1,8 +1,9 @@
 import { Component, OnInit,Output,EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
+import { first, tap} from 'rxjs/operators';
 import {UserService} from "../Service/user.service";
+import { AuthService } from '../Service/auth.service';
 
 @Component({
   selector: 'app-signin',
@@ -20,7 +21,8 @@ export class SigninComponent implements OnInit {
   constructor( private formBuilder: FormBuilder,
                private route: ActivatedRoute,
                private router: Router,
-               private userService: UserService) {}
+               private userService: UserService,
+               private authService: AuthService) {}
 
   ngOnInit(): void {
     this.loginForm=this.formBuilder.group({
@@ -45,16 +47,18 @@ export class SigninComponent implements OnInit {
     }
     this.loading = true;
     this.userService.login(this.f.username.value, this.f.password.value)
-      .pipe(first())
+      // .pipe(first())
       .subscribe(
         data => {
+          this.authService.successfulLogin(data)
 
           //this.router.navigate([this.returnUrl]);
           //this.router.navigate(['/home']);
-          location.href = '/';
+          // location.href = '/';
 
         },
         error => {
+          console.log(error);
           this.loading = false;
         });
   }

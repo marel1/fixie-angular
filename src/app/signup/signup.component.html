@@ -37,7 +37,8 @@
                  aria-describedby="passwordHelp"
                  placeholder="Password"
                  [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
-                 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+                 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                 >
           <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
             <div *ngIf="f.password.errors.required">Password is required</div>
           </div>

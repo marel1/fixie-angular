@@ -1,34 +1,46 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import {Token} from "../_models/Token";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Token } from '../_models/Token';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
-
 export class UserService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http:HttpClient) {}
+  register(username, password) {
+    console.log('register');
+    return this.http.post<string>(`https://localhost:8000/register`, {
+      username: username,
+      password: password,
+    });
+  }
+  login(username, password): Observable<any> {
+    const headers = new HttpHeaders();
 
-  register(username, password)
-  {
-    console.log("register");
-    return this.http.post<Token>(`(https://localhost:8000/register`, {username,password});
+    console.log('login');
+    return this.http.post(
+      `https://localhost:8000/login`,
+      { username: username, password: password },
+      { headers, responseType: 'text' }
+    );
+  }
 
+  grantRole(username: string, role: string) {
+    console.log('grantRole');
+    return this.http.patch(`https://localhost:8000/grantRole`, {
+      username,
+      role,
+    });
   }
-  login(username, password)
-  {
-    console.log("login");
-    return this.http.post<Token>(`(https://localhost:8000/login`, {username,password});
-  }
-  logout()
-  {
-    localStorage.removeItem('token');
-  }
-  grantRole(username: string, role:string)
-  {
-    console.log("grantRole");
-    return this.http.patch(`(https://localhost:8000/grantRole`,{username, role});
+
+  getUsersData() {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({ token: token });
+    const httpOptions = {
+      headers: headers,
+    };
+    return this.http.get(`https://localhost:8000/privateData`, httpOptions);
   }
 }

@@ -1,6 +1,14 @@
-<nav class="navbar navbar-expand-md navbar-dark  " style="max-width: 100%; height: auto;background-color: #292a24;width: auto;">
+<nav
+  class="navbar navbar-expand-md navbar-dark"
+  style="max-width: 100%; height: auto; background-color: #292a24; width: auto;"
+>
   <a class="navbar-brand" href="#">
-    <img src="../../assets/fixie-icon.png" style="width: 60px; height: 60px" class="d-inline-block align-top" alt="">
+    <img
+      src="../../assets/fixie-icon.png"
+      style="width: 60px; height: 60px;"
+      class="d-inline-block align-top"
+      alt=""
+    />
   </a>
 
   <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
@@ -8,11 +16,14 @@
       <li class="nav-item">
         <a class="nav-link disabled" routerLink="/Info">Information</a>
       </li>
-      <li class="nav-item ">
+      <li class="nav-item" *ngIf="!isLoggedIn">
         <a class="nav-link" routerLink="/SignIn">Sign in</a>
       </li>
-      <li class="nav-item ">
+      <li class="nav-item" *ngIf="!isLoggedIn">
         <a class="btn default" routerLink="/SignUp">Sign up</a>
+      </li>
+      <li class="nav-item" *ngIf="isLoggedIn">
+        <a class="btn default" (click)="handleLogout()">Log out</a>
       </li>
     </ul>
   </div>

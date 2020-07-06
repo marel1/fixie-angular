@@ -7,28 +7,34 @@ import { MainComponent } from './main/main.component';
 import { SigninComponent } from './signin/signin.component';
 import { ErrorComponent } from './error/error.component';
 import { SignupComponent } from './signup/signup.component';
-import {Router, RouterModule, Routes} from "@angular/router";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
+import { Router, RouterModule, Routes } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { UserSettingsComponent } from './user-settings/user-settings.component';
+import { UsersListComponent } from './users-list/users-list.component';
 
-const appRoutes:Routes=[
+const appRoutes: Routes = [
   {
-    path:'',
-    component:MainComponent,
-    pathMatch:'full'
+    path: '',
+    component: MainComponent,
+    pathMatch: 'full',
   },
   {
-    path:'SignIn',
-    component:SigninComponent
+    path: 'SignIn',
+    component: SigninComponent,
   },
   {
-    path:'SignUp',
-    component:SignupComponent
+    path: 'SignUp',
+    component: SignupComponent,
   },
   {
-    path:'**',
-    component:ErrorComponent
-  }
+    path: 'users',
+    component: UsersListComponent,
+  },
+  {
+    path: '**',
+    component: ErrorComponent,
+  },
 ];
 @NgModule({
   declarations: [
@@ -37,16 +43,18 @@ const appRoutes:Routes=[
     MainComponent,
     SigninComponent,
     ErrorComponent,
-    SignupComponent
+    SignupComponent,
+    UserSettingsComponent,
+    UsersListComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes, {enableTracing: true}),
-    ReactiveFormsModule
+    RouterModule.forRoot(appRoutes, { enableTracing: true }),
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
