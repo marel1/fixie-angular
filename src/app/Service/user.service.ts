@@ -37,10 +37,35 @@ export class UserService {
 
   getUsersData() {
     const token = localStorage.getItem('token');
+    console.log(token);
     const headers = new HttpHeaders({ token: token });
     const httpOptions = {
       headers: headers,
     };
     return this.http.get(`https://localhost:8000/privateData`, httpOptions);
+  }
+  postUserData() {
+    console.log('posting');
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders(`token: ${token}`);
+    const httpOptions = {
+      headers: headers,
+    };
+    console.log(token);
+    return this.http.post(
+      `https://localhost:8000/privateData`,
+      {
+        firstName: 'firstName',
+        lastName: 'lastName',
+        email: 'email',
+        telephone: 'telephone',
+        postalCode: 'postalCode',
+        street: 'street',
+        houseNumber: 'houseNumber',
+        city: 'city',
+        taxNumber: 'taxNumber',
+      },
+      httpOptions
+    );
   }
 }
