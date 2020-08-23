@@ -1,5 +1,102 @@
-<p>users-list works!</p>
-<button (click)="postUserData()">Add new data set</button>
+<button
+  type="button"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#addUserDataModal"
+  (click)="onAddData()"
+>
+  Add new data set
+</button>
+<div
+  class="modal fade"
+  id="addUserDataModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="addUserDataLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form (submit)="onDataSubmit()">
+          <div class="form-group" [formGroup]="dataFormGroup">
+            <label for="firstName">First name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="firstName"
+              formControlName="firstName"
+            />
+            <label for="lastName">Last name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="lastName"
+              formControlName="lastName"
+            />
+            <label for="email">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              formControlName="email"
+            />
+            <label for="telephone">Telephone</label>
+            <input
+              type="text"
+              class="form-control"
+              id="telephone"
+              formControlName="telephone"
+            />
+            <label for="postalCode">Postal code</label>
+            <input
+              type="text"
+              class="form-control"
+              id="postalCode"
+              formControlName="postalCode"
+            />
+            <label for="street">Street</label>
+            <input
+              type="text"
+              class="form-control"
+              id="street"
+              formControlName="street"
+            />
+            <label for="houseNumber">House number</label>
+            <input
+              type="text"
+              class="form-control"
+              id="houseNumber"
+              formControlName="houseNumber"
+            />
+            <label for="city">City</label>
+            <input
+              type="text"
+              class="form-control"
+              id="city"
+              formControlName="city"
+            />
+            <label for="taxNumber">Tax number</label>
+            <input
+              type="text"
+              class="form-control"
+              id="taxNumber"
+              formControlName="taxNumber"
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#addUserDataModal"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 <button
   type="button"
@@ -21,16 +118,48 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-body">
-        <form>
+        <form (submit)="onChangePassword()">
           <div class="form-group">
             <label for="newPassword">Password</label>
-            <input type="password" class="form-control" id="newPassword" />
+            <input
+              type="password"
+              class="form-control"
+              id="newPassword"
+              [formControl]="newPassword"
+            />
+            <p *ngIf="newPassword.invalid && newPassword.touched" class="error">
+              Bad password
+            </p>
           </div>
           <div class="form-group">
-            <label for="confirmPassword">Password</label>
-            <input type="password" class="form-control" id="confirmPassword" />
+            <label for="confirmPassword">Confirm password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="confirmPassword"
+              [formControl]="confirmPassword"
+            />
+            <p
+              *ngIf="
+                confirmPassword.value !== newPassword.value &&
+                confirmPassword.touched
+              "
+              class="error"
+            >
+              Passwords must be the same
+            </p>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="
+              newPassword.invalid || newPassword.value !== confirmPassword.value
+            "
+            data-toggle="modal"
+            data-target="#passwordModal"
+          >
+            Submit
+          </button>
         </form>
       </div>
     </div>
@@ -40,6 +169,24 @@
   <div class="row">
     <div class="col-sm-12 col-md-6 col-lg-4" *ngFor="let uData of userData">
       <div class="card">
+        <div class="cardButtonsContainer">
+          <button
+            type="button"
+            class="btn btn-outline-primary cardButton"
+            data-toggle="modal"
+            data-target="#addUserDataModal"
+            (click)="onDataEdit(uData)"
+          >
+            Edit
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-danger cardButton"
+            (click)="onDataDelete(uData.id)"
+          >
+            Delete
+          </button>
+        </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
             <span>ID:</span><span>{{ uData.id }}</span>

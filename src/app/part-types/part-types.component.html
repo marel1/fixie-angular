@@ -1,0 +1,79 @@
+<button
+  type="button"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#addPartTypesDataModal"
+  (click)="onAddData()"
+>
+  Add new part type
+</button>
+<div
+  class="modal fade"
+  id="addPartTypesDataModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="addPartTypesDataLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form (submit)="onDataSubmit()">
+          <div class="form-group" [formGroup]="dataFormGroup">
+            <label for="codeType">Code</label>
+            <input
+              type="text"
+              class="form-control"
+              id="codeType"
+              formControlName="codeType"
+            />
+            <label for="nameType">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nameType"
+              formControlName="nameType"
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#addPartTypesDataModal"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div
+      class="col-sm-12 col-md-6 col-lg-4"
+      *ngFor="let uData of partTypeData; index as ind"
+    >
+      <div class="card">
+        <div class="cardButtonsContainer">
+          <button
+            type="button"
+            class="btn btn-outline-danger cardButton"
+            (click)="onDataDelete(ind)"
+          >
+            Delete
+          </button>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <span>Code:</span><span>{{ uData.codeType }}</span>
+          </li>
+          <li class="list-group-item">
+            <span>Name:</span><span>{{ uData.nameType }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

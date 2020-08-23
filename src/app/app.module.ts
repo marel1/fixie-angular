@@ -11,6 +11,7 @@ import { Router, RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
+import { PartTypesComponent } from './part-types/part-types.component';
 
 const appRoutes: Routes = [
   {
@@ -31,6 +32,10 @@ const appRoutes: Routes = [
     component: UserSettingsComponent,
   },
   {
+    path: 'partTypes',
+    component: PartTypesComponent,
+  },
+  {
     path: '**',
     component: ErrorComponent,
   },
@@ -44,6 +49,7 @@ const appRoutes: Routes = [
     ErrorComponent,
     SignupComponent,
     UserSettingsComponent,
+    PartTypesComponent,
   ],
   imports: [
     BrowserModule,

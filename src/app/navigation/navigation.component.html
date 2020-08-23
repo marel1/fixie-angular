@@ -20,6 +20,9 @@
         <a class="nav-link" routerLink="/usersettings" *ngIf="isLoggedIn"
           >Account settings</a
         >
+        <a class="nav-link" routerLink="/partTypes" *ngIf="isLoggedIn"
+          >My parts</a
+        >
       </li>
       <li class="nav-item" *ngIf="!isLoggedIn">
         <a class="nav-link" routerLink="/SignIn">Sign in</a>

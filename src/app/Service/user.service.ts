@@ -8,6 +8,11 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
   constructor(private http: HttpClient) {}
+  token = localStorage.getItem('token');
+  headers = new HttpHeaders(`token: ${this.token}`);
+  httpOptions = {
+    headers: this.headers,
+  };
 
   register(username, password) {
     console.log('register');
@@ -36,36 +41,36 @@ export class UserService {
   }
 
   getUsersData() {
-    const token = localStorage.getItem('token');
-    console.log(token);
-    const headers = new HttpHeaders({ token: token });
-    const httpOptions = {
-      headers: headers,
-    };
-    return this.http.get(`https://localhost:8000/privateData`, httpOptions);
+    return this.http.get(
+      `https://localhost:8000/privateData`,
+      this.httpOptions
+    );
   }
-  postUserData() {
-    console.log('posting');
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders(`token: ${token}`);
-    const httpOptions = {
-      headers: headers,
-    };
-    console.log(token);
+  postUserData(data) {
     return this.http.post(
       `https://localhost:8000/privateData`,
-      {
-        firstName: 'firstName',
-        lastName: 'lastName',
-        email: 'email',
-        telephone: 'telephone',
-        postalCode: 'postalCode',
-        street: 'street',
-        houseNumber: 'houseNumber',
-        city: 'city',
-        taxNumber: 'taxNumber',
-      },
-      httpOptions
+      data,
+      this.httpOptions
+    );
+  }
+  deleteUserData(id) {
+    return this.http.delete(
+      `https://localhost:8000/privateData/${id}`,
+      this.httpOptions
+    );
+  }
+  updateUserData(data) {
+    return this.http.put(
+      `https://localhost:8000/privateData/${data.id}`,
+      data,
+      this.httpOptions
+    );
+  }
+  changePassword(newPassword) {
+    return this.http.patch(
+      'https://localhost:8000/changePassword',
+      { password: newPassword },
+      this.httpOptions
     );
   }
 }
