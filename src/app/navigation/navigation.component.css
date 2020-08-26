@@ -6,3 +6,8 @@
 .default:hover {
   color: whitesmoke;
 }
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}

@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
-export class PartTypesService {
+export class ActivityDictionariesService {
   constructor(private http: HttpClient) {}
   token = localStorage.getItem('token');
   headers = new HttpHeaders(`token: ${this.token}`);
@@ -13,19 +13,22 @@ export class PartTypesService {
   };
 
   getPartTypeData() {
-    return this.http.get(`https://localhost:8002/partTypes`, this.httpOptions);
+    return this.http.get(
+      `https://localhost:8002/activityDictionaries`,
+      this.httpOptions
+    );
   }
   postPartTypeData(data) {
     console.log(data);
     return this.http.post(
-      `https://localhost:8002/partType`,
+      `https://localhost:8002/activityDictionary`,
       data,
       this.httpOptions
     );
   }
   deletePartTypeData(code) {
     return this.http.delete(
-      `https://localhost:8002/partType/${code}`,
+      `https://localhost:8002/activityDictionary/${code}`,
       this.httpOptions
     );
   }

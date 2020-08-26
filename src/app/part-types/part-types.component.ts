@@ -6,7 +6,7 @@ import { PartType } from '../_models/PartType';
 @Component({
   selector: 'app-part-types',
   templateUrl: './part-types.component.html',
-  styleUrls: ['./part-types.component.css'],
+  styleUrls: ['../shared_styles.css'],
 })
 export class PartTypesComponent implements OnInit {
   editedData = null;
@@ -48,8 +48,8 @@ export class PartTypesComponent implements OnInit {
       });
   }
 
-  onDataDelete(id) {
-    this.partTypesService.deletePartTypeData(id).subscribe((data) => {
+  onDataDelete(code) {
+    this.partTypesService.deletePartTypeData(code).subscribe((data) => {
       this.updateData();
     });
   }

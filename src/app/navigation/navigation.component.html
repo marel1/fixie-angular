@@ -1,7 +1,4 @@
-<nav
-  class="navbar navbar-expand-md navbar-dark"
-  style="max-width: 100%; height: auto; background-color: #292a24; width: auto;"
->
+<nav class="navbar navbar-expand-md navbar-dark">
   <a class="navbar-brand" href="#">
     <img
       src="../../assets/fixie-icon.png"
@@ -11,17 +8,25 @@
     />
   </a>
 
-  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link disabled" routerLink="/Info">Information</a>
-      </li>
+  <!-- <div class="navbar-collapse collapse w-100 order-3 dual-collapse2"> -->
+  <div>
+    <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" routerLink="/usersettings" *ngIf="isLoggedIn"
           >Account settings</a
         >
+      </li>
+      <li class="nav-item">
         <a class="nav-link" routerLink="/partTypes" *ngIf="isLoggedIn"
           >My parts</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/activityDictionaries"
+          *ngIf="isLoggedIn"
+          >My activities</a
         >
       </li>
       <li class="nav-item" *ngIf="!isLoggedIn">

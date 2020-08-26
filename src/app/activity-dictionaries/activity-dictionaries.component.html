@@ -2,17 +2,17 @@
   type="button"
   class="btn btn-primary"
   data-toggle="modal"
-  data-target="#addPartTypesDataModal"
+  data-target="#addActivityDataModal"
   (click)="onAddData()"
 >
-  Add new part type
+  Add new activity
 </button>
 <div
   class="modal fade"
-  id="addPartTypesDataModal"
+  id="addActivityDataModal"
   tabindex="-1"
   role="dialog"
-  aria-labelledby="addPartTypesDataLabel"
+  aria-labelledby="addActivityDataModal"
   aria-hidden="true"
 >
   <div class="modal-dialog modal-dialog-centered">
@@ -24,22 +24,22 @@
             <input
               type="text"
               class="form-control"
-              id="codeType"
-              formControlName="codeType"
+              id="actType"
+              formControlName="actType"
             />
             <label for="nameType">Name</label>
             <input
               type="text"
               class="form-control"
-              id="nameType"
-              formControlName="nameType"
+              id="actName"
+              formControlName="actName"
             />
           </div>
           <button
             type="submit"
             class="btn btn-primary"
             data-toggle="modal"
-            data-target="#addPartTypesDataModal"
+            data-target="#addActivityDataModal"
           >
             Submit
           </button>
@@ -51,23 +51,23 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-12 col-md-6 col-lg-4" *ngFor="let uData of partTypeData">
+    <div class="col-sm-12 col-md-6 col-lg-4" *ngFor="let uData of activityData">
       <div class="card">
         <div class="cardButtonsContainer">
           <button
             type="button"
             class="btn btn-outline-danger cardButton"
-            (click)="onDataDelete(uData.codeType)"
+            (click)="onDataDelete(uData.actType)"
           >
             Delete
           </button>
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
-            <span>Code:</span><span>{{ uData.codeType }}</span>
+            <span>Code:</span><span>{{ uData.actType }}</span>
           </li>
           <li class="list-group-item">
-            <span>Name:</span><span>{{ uData.nameType }}</span>
+            <span>Name:</span><span>{{ uData.actName }}</span>
           </li>
         </ul>
       </div>

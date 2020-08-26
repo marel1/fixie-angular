@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
 import { PartTypesComponent } from './part-types/part-types.component';
+import { ActivityDictionariesComponent } from './activity-dictionaries/activity-dictionaries.component';
 
 const appRoutes: Routes = [
   {
@@ -36,6 +37,10 @@ const appRoutes: Routes = [
     component: PartTypesComponent,
   },
   {
+    path: 'activityDictionaries',
+    component: ActivityDictionariesComponent,
+  },
+  {
     path: '**',
     component: ErrorComponent,
   },
@@ -50,6 +55,7 @@ const appRoutes: Routes = [
     SignupComponent,
     UserSettingsComponent,
     PartTypesComponent,
+    ActivityDictionariesComponent,
   ],
   imports: [
     BrowserModule,

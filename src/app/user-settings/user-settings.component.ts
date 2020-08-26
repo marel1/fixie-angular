@@ -6,7 +6,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-users-settings',
   templateUrl: './user-settings.component.html',
-  styleUrls: ['./user-settings.component.css'],
+  styleUrls: ['../shared_styles.css'],
 })
 export class UserSettingsComponent implements OnInit {
   editMode = false;

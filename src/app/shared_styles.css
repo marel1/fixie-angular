@@ -1,0 +1,23 @@
+.cardButton {
+  width: 40%;
+  display: inline-block;
+}
+
+.cardButtonsContainer {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+
+.card {
+  margin-top: 20px;
+}
+
+.error {
+  color: red;
+  font-size: small;
+}
+
+button.btn-primary {
+  margin: 15px;
+}
